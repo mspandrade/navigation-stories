@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NavigationStoriesIndicator">
+        <attr name="barColor" format="color"/>
+        <attr name="backgroundBarColor" format="color"/>
+        <attr name="segments" format="integer"/>
+        <attr name="cornerRadius" format="dimension"/>
+        <attr name="gapSize" format="dimension"/>
+        <attr name="segmentDuration" format="integer"/>
+    </declare-styleable>
+</resources>

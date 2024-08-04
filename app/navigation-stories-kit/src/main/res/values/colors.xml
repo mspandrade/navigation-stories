@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_story_channel">@android:color/black</color>
+    <color name="background_channel">#32000000</color>
+    <color name="background_dialog">#34444444</color>
+</resources>

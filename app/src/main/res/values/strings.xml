@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Navigation Stories</string>
+    <string name="btn_example_action">Ver mais</string>
+    <string name="example_action_message">Ver mais</string>
+</resources>
