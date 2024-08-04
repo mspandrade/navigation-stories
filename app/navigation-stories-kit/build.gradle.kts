@@ -41,19 +41,22 @@ android {
     }
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "br.com.andrade.mspandrade"
-            artifactId = "navigation-stories"
-            version = "1.0.0"
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
+                groupId = "br.com.andrade.mspandrade"
+                artifactId = "navigation-stories"
+                version = "0.0.2"
 
-            afterEvaluate {
-                from(components["release"])
+                afterEvaluate {
+                    from(components["release"])
+                }
             }
         }
     }
 }
+
 
 dependencies {
 
@@ -63,7 +66,6 @@ dependencies {
     implementation(libs.koin)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-//    implementation(libs.view.pager)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

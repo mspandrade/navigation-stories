@@ -51,5 +51,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(project(":app:navigation-stories-kit"))
+//    implementation(project(":app:navigation-stories-kit"))
+    implementation("com.github.mspandrade:navigation-stories:0.0.1")
 }
