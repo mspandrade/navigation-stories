@@ -4,6 +4,9 @@ plugins {
     id("maven-publish")
 }
 
+group = "br.com.andrade.mspandrade"
+version = "0.0.1"
+
 android {
     namespace = "br.com.mspandrade.navigation_stories_kit"
     compileSdk = 34
@@ -45,13 +48,10 @@ afterEvaluate {
     publishing {
         publications {
             register<MavenPublication>("release") {
+                from(components["release"])
                 groupId = "br.com.andrade.mspandrade"
                 artifactId = "navigation-stories"
                 version = "0.0.2"
-
-                afterEvaluate {
-                    from(components["release"])
-                }
             }
         }
     }

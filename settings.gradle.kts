@@ -21,5 +21,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Navigation Stories"
-include(":app")
-include(":app:navigation-stories-kit")
+include(":navigation-stories-kit")
