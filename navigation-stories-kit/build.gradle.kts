@@ -44,16 +44,19 @@ android {
     }
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "br.com.andrade.mspandrade"
+            artifactId = "navigation-stories"
+            version = "0.0.3"
+            afterEvaluate {
                 from(components["release"])
-                groupId = "br.com.andrade.mspandrade"
-                artifactId = "navigation-stories"
-                version = "0.0.2"
             }
         }
+    }
+    repositories {
+        mavenLocal()
     }
 }
 
