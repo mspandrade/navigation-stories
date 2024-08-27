@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Navigation Stories"
 include(":navigation-stories-kit")
+include(":app")

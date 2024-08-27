@@ -6,8 +6,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import br.com.mspandrade.navigation_stories_kit.service.ChannelContentAdapter
 import br.com.mspandrade.navigation_stories_kit.ui.framents.ChannelsNavigationFragment
 import br.com.mspandrade.navigationstories.databinding.ActivityMainBinding
+import org.koin.android.ext.android.get
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btn.setOnClickListener {
-            ChannelsNavigationFragment().show(supportFragmentManager, "stories")
+            ChannelsNavigationFragment(get<ChannelContentAdapter>()).show(supportFragmentManager, "stories")
         }
     }
 }

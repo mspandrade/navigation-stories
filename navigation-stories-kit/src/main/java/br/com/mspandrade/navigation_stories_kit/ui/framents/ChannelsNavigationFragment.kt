@@ -16,17 +16,15 @@ import br.com.mspandrade.navigation_stories_kit.ui.disableNestedScrolling
 import br.com.mspandrade.navigation_stories_kit.ui.framents.StoryChannelFragment.Companion.ARG_CHANNEL_POSITION
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
-import org.koin.android.ext.android.inject
 import kotlin.math.abs
 
 
-open class ChannelsNavigationFragment: DialogFragment() {
+open class ChannelsNavigationFragment(private var contentAdapter: ChannelContentAdapter): DialogFragment() {
 
     companion object {
         const val MAX_SCALE_OUT = 0.9f
     }
 
-    private val contentAdapter: ChannelContentAdapter by inject()
     private lateinit var adapter: ChannelsAdapter
 
     private lateinit var binding: FragmentChannelsNavigationBinding
@@ -52,6 +50,11 @@ open class ChannelsNavigationFragment: DialogFragment() {
         binding = FragmentChannelsNavigationBinding.bind(view)
         setUpViewPagerAdapter()
         setUpBottomSheet()
+    }
+
+    fun setContent(contentAdapter: ChannelContentAdapter) {
+        this.contentAdapter = contentAdapter
+        setUpViewPagerAdapter()
     }
 
     private fun setUpViewPagerAdapter() {
