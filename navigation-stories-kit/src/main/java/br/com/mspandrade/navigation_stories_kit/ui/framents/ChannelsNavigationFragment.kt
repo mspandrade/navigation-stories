@@ -57,6 +57,10 @@ open class ChannelsNavigationFragment(private var contentAdapter: ChannelContent
         setUpViewPagerAdapter()
     }
 
+    fun setPosition(position: Int) {
+        binding.viewPager.setCurrentItem(position, false)
+    }
+
     private fun setUpViewPagerAdapter() {
         val viewPager = binding.viewPager
         adapter = ChannelsAdapter(
