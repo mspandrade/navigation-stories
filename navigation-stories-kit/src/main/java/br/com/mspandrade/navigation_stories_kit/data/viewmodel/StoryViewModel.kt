@@ -3,7 +3,7 @@ package br.com.mspandrade.navigation_stories_kit.data.viewmodel
 import androidx.lifecycle.ViewModel
 import br.com.mspandrade.navigation_stories_kit.data.StoryIndicatorTheme
 
-internal class StoryViewModel: ViewModel() {
+class StoryViewModel: ViewModel() {
 
     var indicatorTheme: StoryIndicatorTheme = StoryIndicatorTheme(
         indicatorCorner = 10f,

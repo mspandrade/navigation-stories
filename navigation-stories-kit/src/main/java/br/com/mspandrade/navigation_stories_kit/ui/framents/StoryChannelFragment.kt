@@ -5,9 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import br.com.mspandrade.navigation_stories_kit.data.ChannelContentData
 import br.com.mspandrade.navigation_stories_kit.data.viewmodel.StoryViewModel
@@ -15,7 +15,6 @@ import br.com.mspandrade.navigation_stories_kit.databinding.FragmentStoryChannel
 import br.com.mspandrade.navigation_stories_kit.service.ChannelContentAdapter
 import br.com.mspandrade.navigation_stories_kit.ui.custom.NavigationStoriesIndicator
 import br.com.mspandrade.navigation_stories_kit.ui.disableNestedScrolling
-import org.koin.android.ext.android.inject
 
 interface StoryChannelNavigation {
     fun next()
@@ -26,7 +25,7 @@ abstract class FragmentBaseContent: Fragment() {
     lateinit var navigation: StoryChannelNavigation
 }
 
-internal class StoryChannelFragment: Fragment()
+internal class StoryChannelFragment(private val contentAdapter: ChannelContentAdapter): Fragment()
     , NavigationStoriesIndicator.OnNavigationStoriesEventListener, StoryChannelNavigation {
 
     companion object {
@@ -39,11 +38,7 @@ internal class StoryChannelFragment: Fragment()
     private lateinit var contentData: ChannelContentData
     private lateinit var adapter: ChannelStoryAdapter
 
-    private val contentAdapter by inject<ChannelContentAdapter>()
-
     private val indicator get() = binding.navStoriesIndicator
-
-    private val viewModel: StoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +50,7 @@ internal class StoryChannelFragment: Fragment()
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentStoryChannelBinding.bind(view)
 
+        val viewModel = ViewModelProvider(requireActivity())[StoryViewModel::class.java]
         indicator.setTheme(viewModel.indicatorTheme)
 
         val position = arguments?.getInt(ARG_CHANNEL_POSITION, 0) ?: 0

@@ -1,10 +1,6 @@
 package br.com.mspandrade.navigation_stories_kit.service
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import br.com.mspandrade.navigation_stories_kit.data.ChannelContentData
 import br.com.mspandrade.navigation_stories_kit.ui.framents.FragmentBaseContent
 

@@ -1,11 +1,15 @@
 package br.com.mspandrade.navigationstories
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import br.com.mspandrade.navigation_stories_kit.data.StoryIndicatorTheme
+import br.com.mspandrade.navigation_stories_kit.data.viewmodel.StoryViewModel
 import br.com.mspandrade.navigation_stories_kit.service.ChannelContentAdapter
 import br.com.mspandrade.navigation_stories_kit.ui.framents.ChannelsNavigationFragment
 import br.com.mspandrade.navigationstories.databinding.ActivityMainBinding
@@ -18,6 +22,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        ViewModelProvider(this)[StoryViewModel::class.java].indicatorTheme = StoryIndicatorTheme(
+            indicatorCorner = 0f,
+            gapSize = 10f,
+            indicatorEnabledColor = android.R.color.holo_red_light,
+            indicatorDisabledColor = android.R.color.holo_red_dark,
+            height = 10
+        )
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -28,7 +41,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btn.setOnClickListener {
-            ChannelsNavigationFragment(get<ChannelContentAdapter>()).show(supportFragmentManager, "stories")
+            ChannelsNavigationFragment().apply {
+                    setContent(get<ChannelContentAdapter>())
+                    setInitialPosition(2)
+                }
+                .show(supportFragmentManager, "stories")
         }
     }
 }

@@ -19,15 +19,17 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import kotlin.math.abs
 
 
-open class ChannelsNavigationFragment(private var contentAdapter: ChannelContentAdapter): DialogFragment() {
+open class ChannelsNavigationFragment: DialogFragment() {
 
     companion object {
         const val MAX_SCALE_OUT = 0.9f
     }
 
     private lateinit var adapter: ChannelsAdapter
-
     private lateinit var binding: FragmentChannelsNavigationBinding
+    private lateinit var contentAdapter: ChannelContentAdapter
+
+    private var initialPosition = 0
 
     override fun getTheme(): Int {
         return R.style.DialogTheme
@@ -54,11 +56,10 @@ open class ChannelsNavigationFragment(private var contentAdapter: ChannelContent
 
     fun setContent(contentAdapter: ChannelContentAdapter) {
         this.contentAdapter = contentAdapter
-        setUpViewPagerAdapter()
     }
 
-    fun setPosition(position: Int) {
-        binding.viewPager.setCurrentItem(position, false)
+    fun setInitialPosition(position: Int) {
+        initialPosition = position
     }
 
     private fun setUpViewPagerAdapter() {
@@ -77,6 +78,7 @@ open class ChannelsNavigationFragment(private var contentAdapter: ChannelContent
         viewPager.adapter = adapter
         viewPager.disableNestedScrolling()
         viewPager.setPageTransformer(ScalePageTransformation())
+        viewPager.setCurrentItem(initialPosition, false)
     }
 
     private fun setUpBottomSheet() {
@@ -110,7 +112,7 @@ private class ChannelsAdapter(
 
     override fun getItemCount(): Int = contentAdapter.getChannelsCount()
 
-    override fun createFragment(position: Int): Fragment = StoryChannelFragment().apply {
+    override fun createFragment(position: Int): Fragment = StoryChannelFragment(contentAdapter).apply {
         arguments = Bundle().also {
             it.putInt(ARG_CHANNEL_POSITION, position)
         }
